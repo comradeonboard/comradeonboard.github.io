@@ -424,18 +424,8 @@ a.link-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .link-text strong { font-size: 15px; }
 .link-text small { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
 .link-arrow { margin-left: auto; color: var(--accent); }
-.copy-btn {
-  margin-left: auto;
-  padding: 7px 12px;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  background: var(--bg-alt);
-  color: var(--accent);
-  font-family: var(--mono);
-  font-size: 12px;
-  cursor: pointer;
-}
-.copy-btn:hover { border-color: var(--accent); }
+.contact-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.copy-btn { cursor: pointer; }
 code { font-family: var(--mono); font-size: 13px; color: var(--accent); }
 
 /* ---------- GitHub repos ---------- */
