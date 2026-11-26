@@ -54,6 +54,10 @@ The site is dark mode only. A live Three.js wireframe globe and particle field s
 
 The Work page has a repository section with selected public GitHub projects and a link to the full profile. Edit the cards in `work.html` to change which repositories are featured.
 
+## Visitor counter
+
+Every page loads a hidden tracking pixel from `visitor-badge.laobi.icu` with the page id `comradeonboard.site`. The same badge is shown in the GitHub profile README at `comradeonboard/comradeonboard`. Every visit to this site increments the count shown on GitHub. The counter is external, so no backend or database is needed.
+
 ## Links
 
 Most profiles use the username `comradeonboard`; X uses `comradeweb3`. Discord has no stable profile URL from a username, so the Connect page offers a copy button instead. The Connect page also includes GitHub Gists, Instagram, Snapchat, TikTok and KICK profiles found through public search.
