@@ -10,7 +10,9 @@ from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 PORT = int(os.environ.get("PORT", "8000"))
-ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dist")
+BASE = os.path.dirname(os.path.abspath(__file__))
+DIST = os.path.join(BASE, "dist")
+ROOT = DIST if os.path.isdir(DIST) else BASE
 
 
 class PortfolioHandler(SimpleHTTPRequestHandler):

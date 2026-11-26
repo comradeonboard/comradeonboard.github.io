@@ -72,7 +72,7 @@ Push to `main` in `comradeonboard/comradeonboard.github.io` with Pages set to "D
 
 ### Render Web Service
 
-No dependencies, no packages, no environment variables needed. The build step copies the site into `dist/` and `server.py` serves that folder.
+No packages are needed. `requirements.txt` is intentionally empty so Render's default `pip install -r requirements.txt` build succeeds even if no custom build command is set. If the build command is set, it copies the site into `dist/`; `server.py` serves `dist/` when present, otherwise the repo root, so both setups work.
 
 **Option A: Dashboard**
 
