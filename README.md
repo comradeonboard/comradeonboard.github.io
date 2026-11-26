@@ -71,9 +71,9 @@ Push to `main` in `comradeonboard/comradeonboard.github.io` with Pages set to "D
 - **Build Command:** `pip install -r requirements.txt`
 - **Start Command:** `python3 server.py`
 
-The repo includes `requirements.txt` (installs gunicorn), `server.py` (Python standard-library server), and `your_application/wsgi.py` (gunicorn fallback).
+The repo includes `requirements.txt` (installs gunicorn), `server.py` (Python standard-library server), `app.py` and `your_application/wsgi.py` (gunicorn fallbacks).
 
-**If the Start Command is left empty**, Render defaults to `gunicorn your_application.wsgi`. That also works: `your_application/wsgi.py` serves the same static files, and `requirements.txt` installs gunicorn so the command is available.
+**If the Start Command is left empty**, Render may default to `gunicorn app:app` or `gunicorn your_application.wsgi`. Both work: `app.py` and `your_application/wsgi.py` serve the same static files, and `requirements.txt` installs gunicorn so either command is available.
 
 **Alternatively**, use the included Blueprint: Render Dashboard → **New** → **Blueprint** → point it at this repo. `render.yaml` sets the build and start commands automatically.
 
