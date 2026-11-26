@@ -1,6 +1,6 @@
 # Comrade: Personal Brand Portfolio
 
-A simple, dependency-free multi-page portfolio. Plain HTML, CSS, and a small shared JavaScript file. Deployed to GitHub Pages at **https://comradeonboard.github.io**.
+A clean multi-page portfolio built with plain HTML, CSS, and a small shared JavaScript file. It includes a light/dark theme toggle and a live 3D background. Deployed to GitHub Pages at **https://comradeonboard.github.io**.
 
 ## Pages
 
@@ -19,17 +19,19 @@ A simple, dependency-free multi-page portfolio. Plain HTML, CSS, and a small sha
 ## Editing
 
 - Copy/styling lives in `styles.css`.
-- Shared behavior (mobile nav, active link, 3D tilt, copy button, footer year) lives in `script.js`.
+- Shared behavior (theme toggle, mobile nav, active link, background 3D, card tilt, copy button, footer year) lives in `script.js`.
 - Every page shares the same header and footer markup. When adding a page, copy an existing one and update `<title>`, `data-page`, and the nav.
 - `data-page` values: `home`, `about`, `work`, `skills`, `insights`, `connect`. Project pages use `work` so the Work nav item stays highlighted.
 
-## 3D animation
+## Theme and 3D animation
 
-The hero contains a CSS 3D cube with six faces that rotates continuously. On desktop it tilts gently toward the pointer. Cards tilt slightly on hover. All motion is disabled for visitors using `prefers-reduced-motion`. No libraries or build step.
+The sun/moon button in the header switches between dark and light themes and saves the choice locally. The default follows the visitor's system setting.
+
+A live Three.js wireframe globe and particle field sit behind every page, reacting slowly to pointer movement. If WebGL or the CDN is unavailable, a CSS gradient animation takes over. Cards tilt slightly on hover. All motion is disabled for visitors using `prefers-reduced-motion`. No build step is required.
 
 ## Links
 
-Most profiles use the username `comradeonboard`; X uses `comradeweb3`. Discord has no stable profile URL from a username, so the Connect page offers a copy button instead.
+Most profiles use the username `comradeonboard`; X uses `comradeweb3`. Discord has no stable profile URL from a username, so the Connect page offers a copy button instead. The Connect page also includes GitHub Gists, Instagram, Snapchat, TikTok and KICK profiles found via public search.
 
 ## Deploy
 
