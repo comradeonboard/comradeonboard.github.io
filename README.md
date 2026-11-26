@@ -1,4 +1,4 @@
-# Comrade — Personal Brand Portfolio
+# Comrade: Personal Brand Portfolio
 
 A simple, dependency-free multi-page portfolio. Plain HTML, CSS, and a small shared JavaScript file. Deployed to GitHub Pages at **https://comradeonboard.github.io**.
 
@@ -6,12 +6,12 @@ A simple, dependency-free multi-page portfolio. Plain HTML, CSS, and a small sha
 
 | File | URL |
 | --- | --- |
-| `index.html` | `/` — home |
+| `index.html` | `/` (home) |
 | `about.html` | `/about.html` |
 | `work.html` | `/work.html` |
 | `skills.html` | `/skills.html` |
 | `insights.html` | `/insights.html` |
-| `connect.html` | `/connect.html` — all social/contact links |
+| `connect.html` | `/connect.html` (all social/contact links) |
 | `project-comrade-labs.html` | `/project-comrade-labs.html` |
 | `project-tech-content.html` | `/project-tech-content.html` |
 | `project-featured-insights.html` | `/project-featured-insights.html` |
