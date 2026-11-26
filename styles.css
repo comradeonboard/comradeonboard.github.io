@@ -682,7 +682,7 @@ main, .site-footer { position: relative; z-index: 1; }
 }
 .affiliate-preview-bar { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.6rem; }
 .affiliate-preview-bar i { width: 6px; height: 6px; border-radius: 50%; background: var(--line-strong); }
-.affiliate-preview-url { margin-left: auto; font-family: var(--font-mono); font-size: 0.62rem; color: var(--faint); }
+.affiliate-preview-url { margin-left: auto; max-width: 72%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-mono); font-size: 0.62rem; color: var(--faint); }
 .affiliate-preview-body {
   min-height: 108px;
   display: flex;
@@ -700,7 +700,8 @@ main, .site-footer { position: relative; z-index: 1; }
 .affiliate-preview-sub { font-size: 0.72rem; color: var(--muted); }
 .affiliate-card h3 { font-size: 1.25rem; letter-spacing: -0.02em; }
 .affiliate-card p { color: var(--muted); font-size: 0.92rem; flex: 1; }
-.affiliate-action { margin-top: 1.25rem; align-self: flex-start; }
+.affiliate-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
+.affiliate-action { align-self: flex-start; }
 
 /* ---------- Prose ---------- */
 .prose-grid {
