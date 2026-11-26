@@ -35,7 +35,7 @@ Live site: https://comradeonboard.github.io/
 - Removed the light/dark theme button. The site is dark mode only.
 - Removed the menu button. Navigation is now a horizontal scrollable bar on smaller screens.
 - Removed the page photo from the home and about pages.
-- Set your photo (`media/comrade.jpg`) as the favicon on every page.
+- Set a circular version of your photo (`media/favicon.png`) as the favicon on every page.
 
 ## Theme and 3D animation
 
