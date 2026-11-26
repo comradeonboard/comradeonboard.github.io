@@ -9,20 +9,35 @@
   <meta name="theme-color" content="#0f0e0c">
   <link rel="icon" type="image/png" sizes="any" href="media/favicon.png">
   <link rel="apple-touch-icon" href="media/favicon.png">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .nf { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 2rem; }
-    .nf-code { font-family: var(--font-mono); font-size: clamp(5rem, 16vw, 10rem); line-height: 1; margin: 0; color: var(--accent); }
-    .nf h1 { margin: 1rem 0 0.5rem; }
-    .nf p { color: var(--muted); margin-bottom: 2rem; }
-  </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
-<body>
-  <main class="nf">
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Comrade home">
+        <span class="brand-text">Comrade<span class="brand-dot">.</span></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="work.html">Work</a>
+        <a href="skills.html">Skills</a>
+        <a href="insights.html">Insights</a>
+        <a href="connect.html">Connect</a>
+      </nav>
+      <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+        <span class="menu-bars" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="nf">
     <div>
       <p class="nf-code">404</p>
       <h1>Page not found.</h1>
@@ -30,6 +45,15 @@
       <a class="btn btn-primary" href="index.html">Back to the portfolio</a>
     </div>
   </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-name">Comrade<span class="brand-dot">.</span></p>
+      <p class="footer-note">Developer / AI Engineer</p>
+      <p class="footer-legal">&copy; <span id="year">2026</span>. All rights reserved.</p>
+      <a class="to-top" href="#main" aria-label="Back to top">↑</a>
+    </div>
+  </footer>
   <img class="visitor-pixel" src="https://visitor-badge.laobi.icu/badge?page_id=comradeonboard.site" alt="" width="1" height="1" aria-hidden="true" referrerpolicy="no-referrer">
 </body>
 </html>

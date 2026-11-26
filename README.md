@@ -21,8 +21,9 @@ Live site: https://comradeonboard.github.io/
 
 ## Editing
 
-- Styling lives in `styles.css`. It is dark only, with no theme toggle and no menu toggle. The navigation scrolls horizontally on smaller screens.
-- Shared behavior lives in `script.js`: sticky header state, active navigation link, scroll reveal, count-up stats, Discord username copy button and footer year.
+- Styling lives in `styles.css`. It is dark only, with no theme toggle. On screens 900px and below, the navigation becomes a hamburger menu that works on phones and tablets of every size.
+- Shared behavior lives in `script.js`: sticky header state, active navigation link, mobile menu, scroll reveal, count-up stats, Discord username copy button, footer year and a live ambient 3D background.
+- The 3D background is a low-opacity wireframe shape and particle field drawn on a fixed canvas behind the content. It uses the site accent color, adapts to screen size, pauses when the tab is hidden, and falls back to CSS gradients when WebGL is unavailable or reduced motion is requested.
 - Every page shares the same header and footer markup. When adding a page, copy an existing one and update `<title>`, `data-page`, and the navigation.
 - `data-page` values: `home`, `about`, `work`, `skills`, `insights`, `connect`. Project detail pages use `work` so the Work nav item stays highlighted.
 - All pages include a no-cache meta tag so visitors get the latest version after updates.
