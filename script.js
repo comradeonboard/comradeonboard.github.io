@@ -4,7 +4,6 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(pointer: fine)').matches;
-  var root = document.documentElement;
   var background3D = null;
 
   // Footer year
@@ -17,36 +16,6 @@
     background3D.wire.material.color.set(accent);
     background3D.points.material.color.set(accent);
     background3D.renderer.render(background3D.scene, background3D.camera);
-  }
-
-  // Light and dark theme
-  var themeButton = document.querySelector('.theme-toggle');
-  var metaTheme = document.querySelector('meta[name="theme-color"]');
-
-  function applyTheme(theme, persist) {
-    root.dataset.theme = theme;
-    var label = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
-    if (themeButton) {
-      themeButton.setAttribute('aria-label', label);
-      themeButton.setAttribute('title', label);
-    }
-    if (metaTheme) metaTheme.setAttribute('content', theme === 'dark' ? '#0b0d10' : '#f6f8fb');
-    if (persist) {
-      try { localStorage.setItem('theme', theme); } catch (error) {}
-    }
-    update3DColors();
-  }
-
-  var initialTheme = root.dataset.theme;
-  if (initialTheme !== 'light' && initialTheme !== 'dark') {
-    initialTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  }
-  applyTheme(initialTheme, false);
-
-  if (themeButton) {
-    themeButton.addEventListener('click', function () {
-      applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true);
-    });
   }
 
   // Mobile navigation
