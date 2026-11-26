@@ -114,15 +114,24 @@
         button.textContent = 'Copied!';
         window.setTimeout(function () { button.textContent = previous; }, 1600);
       };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(value).then(done).catch(function () {});
-      } else {
+      var copyFallback = function () {
         var input = document.createElement('textarea');
         input.value = value;
+        input.setAttribute('readonly', '');
+        input.style.position = 'fixed';
+        input.style.opacity = '0';
         document.body.appendChild(input);
         input.select();
-        try { document.execCommand('copy'); done(); } catch (error) {}
+        try { document.execCommand('copy'); } catch (error) {}
         document.body.removeChild(input);
+      };
+
+      done();
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).catch(copyFallback);
+      } else {
+        copyFallback();
       }
     });
   });
