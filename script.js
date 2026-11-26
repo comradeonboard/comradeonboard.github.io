@@ -18,36 +18,7 @@
     background3D.renderer.render(background3D.scene, background3D.camera);
   }
 
-  // Mobile navigation
-  var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('site-nav');
-
-  function closeNav() {
-    if (!nav || !toggle) return;
-    nav.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Open navigation');
-  }
-
-  if (toggle && nav) {
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-    });
-
-    nav.addEventListener('click', function (event) {
-      if (event.target.closest('a')) closeNav();
-    });
-
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') closeNav();
-    });
-
-    document.addEventListener('click', function (event) {
-      if (!nav.contains(event.target) && !toggle.contains(event.target)) closeNav();
-    });
-  }
 
   // Highlight the current page in the navigation
   var page = document.body.dataset.page;
