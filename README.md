@@ -66,23 +66,15 @@ Push to `main` in `comradeonboard/comradeonboard.github.io` with Pages set to "D
 
 ### Render Web Service
 
-When Render asks for a **Start Command**, enter:
+**If creating a Web Service manually**, set these two fields in the Render dashboard:
 
-```
-python3 server.py
-```
+- **Build Command:** `pip install -r requirements.txt`
+- **Start Command:** `python3 server.py`
 
-That is the exact command. The repo includes `server.py` (a Python standard-library server), an empty `requirements.txt`, and `render.yaml` (a Render Blueprint) so nothing else is needed.
+The repo includes `requirements.txt` (installs gunicorn), `server.py` (Python standard-library server), and `your_application/wsgi.py` (gunicorn fallback).
 
-Step by step:
+**If the Start Command is left empty**, Render defaults to `gunicorn your_application.wsgi`. That also works: `your_application/wsgi.py` serves the same static files, and `requirements.txt` installs gunicorn so the command is available.
 
-1. Render Dashboard → **New** → **Web Service**.
-2. Connect the GitHub repo `comradeonboard/comradeonboard.github.io`.
-3. Runtime: **Python 3**. Build command: `echo "No build needed for static site"`. Start command: `python3 server.py`.
-4. Deploy.
+**Alternatively**, use the included Blueprint: Render Dashboard → **New** → **Blueprint** → point it at this repo. `render.yaml` sets the build and start commands automatically.
 
-Alternatively, use the included Blueprint: Render Dashboard → **New** → **Blueprint** → point it at this repo. `render.yaml` already sets the runtime, build command and start command automatically.
-
-The explicit build command matters: leaving it empty makes Render run `pip install -r requirements.txt` by default, which fails without a requirements file. This repo includes an empty `requirements.txt` as a fallback, but setting the build command avoids the issue entirely.
-
-The server listens on the `PORT` environment variable that Render provides and falls back to `10000` for local runs. No Python packages or dependencies are required.
+`server.py` listens on the `PORT` environment variable Render provides and falls back to `10000` locally.
