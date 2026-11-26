@@ -3,7 +3,7 @@ services:
     name: comrade-portfolio
     runtime: python3
     plan: free
-    buildCommand: ""
+    buildCommand: echo "No build needed for static site"
     startCommand: python3 server.py
     envVars:
       - key: PYTHON_VERSION
