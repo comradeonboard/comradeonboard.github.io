@@ -17,6 +17,7 @@ Live site: https://comradeonboard.github.io/
 | `project-comrade-labs.html` | `/project-comrade-labs.html` |
 | `project-tech-content.html` | `/project-tech-content.html` |
 | `project-featured-insights.html` | `/project-featured-insights.html` |
+| `404.html` | Custom not-found page |
 
 ## Editing
 
@@ -25,6 +26,7 @@ Live site: https://comradeonboard.github.io/
 - Every page shares the same header and footer markup. When adding a page, copy an existing one and update `<title>`, `data-page`, and the navigation.
 - `data-page` values: `home`, `about`, `work`, `skills`, `insights`, `connect`. Project detail pages use `work` so the Work nav item stays highlighted.
 - All pages include a no-cache meta tag so visitors get the latest version after updates.
+- SEO lives in each page's `<head>`: Open Graph, Twitter card, canonical URL and JSON-LD structured data. `sitemap.xml` and `robots.txt` are in the repo root.
 
 ## Corrections applied
 
@@ -70,15 +72,26 @@ Push to `main` in `comradeonboard/comradeonboard.github.io` with Pages set to "D
 
 ### Render Web Service
 
-**If creating a Web Service manually**, set these two fields in the Render dashboard:
+No dependencies, no packages, no environment variables needed. The build step copies the site into `dist/` and `server.py` serves that folder.
 
-- **Build Command:** `pip install -r requirements.txt`
-- **Start Command:** `python3 server.py`
+**Option A: Dashboard**
 
-The repo includes `requirements.txt` (installs gunicorn), `server.py` (Python standard-library server), `app.py` and `your_application/wsgi.py` (gunicorn fallbacks).
+1. Render Dashboard → **New** → **Web Service**.
+2. Connect `comradeonboard/comradeonboard.github.io`, branch `main`, root directory empty.
+3. Runtime **Python 3**, plan Free.
+4. Set the fields exactly:
 
-**If the Start Command is left empty**, Render may default to `gunicorn app:app` or `gunicorn your_application.wsgi`. Both work: `app.py` and `your_application/wsgi.py` serve the same static files, and `requirements.txt` installs gunicorn so either command is available.
+   | Field | Value |
+   | --- | --- |
+   | Build Command | `mkdir -p dist && cp -r *.html *.xml *.txt media styles.css script.js dist/` |
+   | Start Command | `python3 server.py` |
 
-**Alternatively**, use the included Blueprint: Render Dashboard → **New** → **Blueprint** → point it at this repo. `render.yaml` sets the build and start commands automatically.
+5. Create the Web Service. Render assigns a URL such as `https://comrade-xxxx.onrender.com`. Future pushes to `main` deploy automatically.
 
-`server.py` listens on the `PORT` environment variable Render provides and falls back to `10000` locally.
+**Option B: Blueprint**
+
+Render Dashboard → **New** → **Blueprint** → point it at this repo. `render.yaml` sets the service name, build command and start command automatically.
+
+`server.py` reads `PORT` from Render and falls back to `8000` locally. It serves the site's own `404.html` for unknown URLs and disables directory listings.
+
+> On Render's free plan the service sleeps after inactivity, so the first visit after a gap can take several seconds. A Static Site avoids this, but this repo is configured as a Web Service as requested. If you move to a custom domain, update `og:url`, canonical links, `sitemap.xml` and `robots.txt` to the new address.

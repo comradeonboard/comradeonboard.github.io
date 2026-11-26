@@ -1,10 +1,13 @@
+# Render Blueprint: Web Service for the portfolio.
+# No dependencies: the build step copies the site into dist/, and server.py
+# serves that folder on the port Render provides.
 services:
   - type: web
-    name: comrade-portfolio
-    runtime: python3
+    name: comradeonboard
+    runtime: python
     plan: free
-    buildCommand: echo "No build needed for static site"
+    repo: https://github.com/comradeonboard/comradeonboard.github.io
+    branch: main
+    buildCommand: mkdir -p dist && cp -r *.html *.xml *.txt media styles.css script.js dist/
     startCommand: python3 server.py
-    envVars:
-      - key: PYTHON_VERSION
-        value: "3.11.0"
+    autoDeployTrigger: commit
