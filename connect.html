@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comrade</title>
   <meta name="description" content="All the ways to reach Comrade: GitHub, X, LinkedIn, Discord, Telegram, WhatsApp, and email.">
-  <meta name="theme-color" content="#0b0d10">
+  <meta name="theme-color" content="#0f0e0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Comrade">
   <meta property="og:url" content="https://comradeonboard.github.io/connect.html">
@@ -40,17 +40,19 @@
   <link rel="apple-touch-icon" href="media/favicon.png">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body data-page="connect">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
+  <header class="site-header" id="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Comrade home">
-        <span class="brand-mark" aria-hidden="true">C</span>
-        <span class="brand-name">COMRADE</span>
+        <span class="brand-text">Comrade<span class="brand-dot">.</span></span>
       </a>
-      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <nav class="nav" id="nav" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="work.html">Work</a>
@@ -62,52 +64,60 @@
   </header>
 
   <main id="main">
-    <section class="page-hero">
+    <section class="page-head grid-bg" id="top">
       <div class="container">
-        <p class="section-label">Connect</p>
-        <h1>Let's build something that matters.</h1>
-        <p class="page-lead">Open to freelance projects, collaborations, and remote opportunities. DMs are always open. Pick whichever channel you like.</p>
-        <a class="btn btn-primary btn-lg" href="mailto:comradeonboard@gmail.com">Start a conversation</a>
+        <p class="eyebrow"><span class="idx">01 Connect</span></p>
+        <h1 class="page-title">Let's build something<br>that matters.</h1>
+        <p class="page-sub">Open to freelance projects, collaborations, and remote opportunities. DMs are open. Pick whichever channel you like.</p>
+        <div class="hero-cta"><a class="btn btn-primary" href="mailto:comradeonboard@gmail.com">Start a conversation</a></div>
       </div>
     </section>
-
     <section class="section">
       <div class="container">
-        <div class="split-heading">
-          <div>
-            <p class="section-label">Everywhere else</p>
-            <h2>Find me online.</h2>
-          </div>
-          <p>Pick a channel and reach out.</p>
-        </div>
-        <div class="contact-actions">
+        <header class="section-head reveal">
+          <p class="eyebrow"><span class="idx">02</span> Everywhere else</p>
+          <h2 class="section-title">Find me online.</h2>
+          <p class="section-sub">Pick a channel and reach out.</p>
+        </header>
+        <div class="contact-actions reveal">
           <a class="btn btn-primary" href="https://wa.me/2349064539832" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a class="btn btn-secondary" href="https://www.linkedin.com/in/comradeonboard" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a class="btn btn-secondary" href="https://github.com/comradeonboard" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a class="btn btn-secondary" href="https://x.com/comradeweb3" target="_blank" rel="noopener noreferrer">X / Twitter</a>
-          <a class="btn btn-secondary" href="https://t.me/comradeonboard" target="_blank" rel="noopener noreferrer">Telegram</a>
-          <a class="btn btn-secondary" href="mailto:comradeonboard@gmail.com">Email</a>
-          <a class="btn btn-secondary" href="https://www.linkedin.com/company/comradelabs" target="_blank" rel="noopener noreferrer">Comrade Labs</a>
-          <button class="btn btn-secondary copy-btn" type="button" data-copy="comradeonboard" aria-label="Copy Discord username">Discord</button>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/comradeonboard" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn btn-ghost" href="https://github.com/comradeonboard" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn btn-ghost" href="https://x.com/comradeweb3" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+          <a class="btn btn-ghost" href="https://t.me/comradeonboard" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a class="btn btn-ghost" href="mailto:comradeonboard@gmail.com">Email</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/company/comradelabs" target="_blank" rel="noopener noreferrer">Comrade Labs</a>
+          <button class="btn btn-ghost copy-btn" type="button" data-copy="comradeonboard" aria-label="Copy Discord username">Discord</button>
+        </div>
+        <div class="info-grid reveal">
+          <div class="info-cell"><span class="info-k">Best for work</span><span class="info-v">Email or WhatsApp</span></div>
+          <div class="info-cell"><span class="info-k">Best for ideas</span><span class="info-v">LinkedIn or X</span></div>
+          <div class="info-cell"><span class="info-k">Availability</span><span class="info-v">Freelance and remote</span></div>
         </div>
       </div>
     </section>
 
-    <section class="cta-band">
-      <div class="container cta-inner">
-        <div>
-          <p class="section-label">Prefer a quick brief?</p>
-          <h2>Tell me what you're building.</h2>
+    <section class="section section-alt contact" id="contact-cta">
+      <div class="container">
+        <div class="contact-inner reveal">
+          <p class="eyebrow"><span class="idx">03</span> Contact</p>
+          <h2 class="contact-title">Prefer a quick brief?</h2>
+          <p class="contact-sub">Tell me what you are building and I will get back to you.</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:comradeonboard@gmail.com?subject=Project%20inquiry">Email me</a>
+            <a class="btn btn-ghost" href="work.html">View work</a>
+          </div>
         </div>
-        <a class="btn btn-primary btn-lg" href="mailto:comradeonboard@gmail.com?subject=Project%20inquiry">Email me</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>&copy; <span id="year">2026</span> Comrade. All rights reserved.</p>
-      <nav aria-label="Footer"><a href="index.html">Back to home</a></nav>
+      <p class="footer-name">Comrade<span class="brand-dot">.</span></p>
+      <p class="footer-note">Developer / AI Engineer</p>
+      <p class="footer-legal">&copy; <span id="year">2026</span>. All rights reserved.</p>
+      <a class="to-top" href="#top" aria-label="Back to top">↑</a>
     </div>
   </footer>
   <img class="visitor-pixel" src="https://visitor-badge.laobi.icu/badge?page_id=comradeonboard.site" alt="" width="1" height="1" aria-hidden="true" referrerpolicy="no-referrer">

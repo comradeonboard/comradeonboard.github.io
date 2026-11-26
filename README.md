@@ -1,6 +1,6 @@
 # Comrade: Personal Brand Portfolio
 
-A clean dark-mode multi-page portfolio built with plain HTML, CSS, and a small shared JavaScript file. It has a live 3D background, a GitHub proof of work section, and layouts that adapt to phones, iPads and desktops.
+A clean dark-mode multi-page portfolio built with plain HTML, CSS, and a small shared JavaScript file. The visual design follows the Arafat Onimisi portfolio: Space Grotesk and Inter typography, blueprint grid backgrounds, numbered eyebrows, pill buttons and card grids. It has a GitHub proof of work section, and layouts that adapt to phones, iPads and desktops.
 
 Live site: https://comradeonboard.github.io/
 
@@ -21,8 +21,8 @@ Live site: https://comradeonboard.github.io/
 
 ## Editing
 
-- Styling lives in `styles.css`.
-- Shared behavior lives in `script.js`: active navigation link, background 3D scene, card tilt, Discord username copy button and footer year.
+- Styling lives in `styles.css`. It is dark only, with no theme toggle and no menu toggle. The navigation scrolls horizontally on smaller screens.
+- Shared behavior lives in `script.js`: sticky header state, active navigation link, scroll reveal, count-up stats, Discord username copy button and footer year.
 - Every page shares the same header and footer markup. When adding a page, copy an existing one and update `<title>`, `data-page`, and the navigation.
 - `data-page` values: `home`, `about`, `work`, `skills`, `insights`, `connect`. Project detail pages use `work` so the Work nav item stays highlighted.
 - All pages include a no-cache meta tag so visitors get the latest version after updates.
