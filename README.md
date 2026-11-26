@@ -60,7 +60,7 @@ Every page loads a hidden tracking pixel from `visitor-badge.laobi.icu` with the
 
 ## Links
 
-Most profiles use the username `comradeonboard`; X uses `comradeweb3`. Discord has no stable profile URL from a username, so the Connect page offers a copy button instead. The Connect page also includes GitHub Gists, Instagram, Snapchat, TikTok and KICK profiles found through public search.
+Most profiles use the username `comradeonboard`; X uses `comradeweb3`. Discord has no stable profile URL from a username, so the Connect page offers a copy button instead. The Connect page lists GitHub, X, LinkedIn, Telegram, WhatsApp, Email, Discord and Comrade Labs.
 
 ## Deploy
 
