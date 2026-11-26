@@ -34,8 +34,8 @@ Live site: https://comradeonboard.github.io/
 - Removed the unwanted third service card, skill, insight quote and related copy.
 - Removed the light/dark theme button. The site is dark mode only.
 - Removed the menu button. Navigation is now a horizontal scrollable bar on smaller screens.
-- Removed the favicon. No icon is loaded in the browser tab.
-- Added your photo as `media/comrade.jpg` to the home and about pages.
+- Removed the page photo from the home and about pages.
+- Set your photo (`media/comrade.jpg`) as the favicon on every page.
 
 ## Theme and 3D animation
 
