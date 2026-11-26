@@ -33,7 +33,7 @@
     });
   }
 
-  /* ---------- Mobile menu ---------- */
+  /* ---------- Menu ---------- */
   var menuBtn = document.getElementById('menu-btn');
 
   function setMenu(open) {
@@ -55,12 +55,15 @@
     });
   }
 
-  document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') setMenu(false);
+  document.addEventListener('click', function (event) {
+    if (!menuBtn || !nav) return;
+    if (menuBtn.getAttribute('aria-expanded') !== 'true') return;
+    if (event.target.closest('#menu-btn') || event.target.closest('#nav')) return;
+    setMenu(false);
   });
 
-  window.addEventListener('resize', function () {
-    if (window.innerWidth > 900) setMenu(false);
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') setMenu(false);
   });
 
   /* ---------- Reveal on scroll ---------- */
