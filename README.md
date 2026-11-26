@@ -43,7 +43,7 @@ Live site: https://comradeonboard.github.io/
 
 ## Theme and 3D animation
 
-The site is dark mode only. A live Three.js wireframe globe and particle field sit behind every page and react slowly to pointer movement. If WebGL or the CDN is unavailable, a CSS gradient animation takes over. Cards tilt slightly on hover. All motion is disabled for visitors using `prefers-reduced-motion`. No build step is required.
+The site is dark mode only. A live Three.js wireframe globe, particle field, and subtle crypto candlestick chart sit behind every page and react slowly to pointer movement. If WebGL or the CDN is unavailable, a CSS gradient animation takes over. Cards tilt slightly on hover. All motion is disabled for visitors using `prefers-reduced-motion`. No build step is required.
 
 ## Responsive behavior
 

@@ -193,12 +193,81 @@
 
       scene.add(group);
 
+      /* Small crypto chart in the ambient scene */
+      var cryptoGroup = new THREE.Group();
+      var cryptoDim = new THREE.Color('#8c7868');
+      var cryptoBaseY = -1.5;
+      var tickCount = 0;
+      var coin;
+
+      var candles = [
+        { o: 0.00, c: 0.28, h: 0.38, l: -0.08 },
+        { o: 0.28, c: 0.18, h: 0.36, l: 0.10 },
+        { o: 0.18, c: 0.46, h: 0.52, l: 0.14 },
+        { o: 0.46, c: 0.40, h: 0.58, l: 0.32 },
+        { o: 0.40, c: 0.64, h: 0.72, l: 0.34 },
+        { o: 0.64, c: 0.56, h: 0.76, l: 0.48 },
+        { o: 0.56, c: 0.82, h: 0.90, l: 0.52 },
+        { o: 0.82, c: 0.74, h: 0.96, l: 0.66 },
+        { o: 0.74, c: 1.02, h: 1.12, l: 0.70 }
+      ];
+
+      var upMaterial = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.22 });
+      var downMaterial = new THREE.MeshBasicMaterial({ color: cryptoDim, transparent: true, opacity: 0.2 });
+      var wickMaterial = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.14 });
+      var trendPoints = [];
+
+      candles.forEach(function (candle, index) {
+        var x = (index - (candles.length - 1) / 2) * 0.36;
+        var isUp = candle.c >= candle.o;
+        var bodyHeight = Math.max(Math.abs(candle.c - candle.o), 0.09);
+
+        var body = new THREE.Mesh(new THREE.BoxGeometry(0.16, bodyHeight, 0.02), isUp ? upMaterial : downMaterial);
+        body.position.set(x, (candle.o + candle.c) / 2, 0);
+        cryptoGroup.add(body);
+
+        var wick = new THREE.Mesh(new THREE.BoxGeometry(0.012, candle.h - candle.l, 0.012), wickMaterial);
+        wick.position.set(x, (candle.h + candle.l) / 2, -0.01);
+        cryptoGroup.add(wick);
+
+        trendPoints.push(new THREE.Vector3(x, candle.c + 0.07, 0.03));
+      });
+
+      var trend = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(trendPoints),
+        new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.28 })
+      );
+      cryptoGroup.add(trend);
+
+      var axisPoints = [
+        new THREE.Vector3(-1.6, -0.22, 0), new THREE.Vector3(1.6, -0.22, 0)
+      ];
+      [-0.72, 0, 0.72].forEach(function (x) {
+        axisPoints.push(new THREE.Vector3(x, -0.22, 0), new THREE.Vector3(x, 0.92, 0));
+      });
+      cryptoGroup.add(new THREE.LineSegments(
+        new THREE.BufferGeometry().setFromPoints(axisPoints),
+        new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.08 })
+      ));
+
+      coin = new THREE.Mesh(
+        new THREE.TorusGeometry(0.2, 0.012, 6, 48),
+        new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.24 })
+      );
+      var lastPoint = trendPoints[trendPoints.length - 1];
+      coin.position.set(lastPoint.x, lastPoint.y + 0.26, 0.05);
+      cryptoGroup.add(coin);
+      scene.add(cryptoGroup);
+
       function resize() {
         var width = window.innerWidth;
         var height = window.innerHeight;
         var narrow = width < 700;
         group.position.set(narrow ? 0 : 2.4, narrow ? 1.1 : 0.6, 0);
         group.scale.setScalar(narrow ? 0.72 : 1);
+        cryptoBaseY = narrow ? -1.9 : -1.5;
+        cryptoGroup.position.set(narrow ? -0.4 : -2.9, cryptoBaseY, 0);
+        cryptoGroup.scale.setScalar(narrow ? 0.62 : 0.85);
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
         renderer.setSize(width, height, false);
@@ -232,6 +301,10 @@
         group.rotation.y += 0.0012;
         group.rotation.x += (pointer.y * 0.08 - group.rotation.x) * 0.02;
         group.rotation.z += 0.0003;
+        tickCount += 1;
+        cryptoGroup.position.y = cryptoBaseY + Math.sin(tickCount * 0.012) * 0.05;
+        cryptoGroup.rotation.z = Math.sin(tickCount * 0.008) * 0.025;
+        coin.rotation.z += 0.012;
         camera.position.x += (pointer.x * 0.25 - camera.position.x) * 0.02;
         camera.position.y += (-pointer.y * 0.18 - camera.position.y) * 0.02;
         renderer.render(scene, camera);
