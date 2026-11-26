@@ -34,6 +34,8 @@ Live site: https://comradeonboard.github.io/
 - Removed the unwanted third service card, skill, insight quote and related copy.
 - Removed the light/dark theme button. The site is dark mode only.
 - Removed the menu button. Navigation is now a horizontal scrollable bar on smaller screens.
+- Removed the favicon. No icon is loaded in the browser tab.
+- Added your photo as `media/comrade.jpg` to the home and about pages.
 
 ## Theme and 3D animation
 
@@ -64,15 +66,21 @@ Push to `main` in `comradeonboard/comradeonboard.github.io` with Pages set to "D
 
 ### Render Web Service
 
-The repo includes `render.yaml` and `server.py`. Start command:
+When Render asks for a **Start Command**, enter:
 
 ```
 python3 server.py
 ```
 
-The server listens on the `PORT` environment variable that Render provides, defaulting to `10000` locally. Two ways to deploy:
+That is the exact command. The repo includes `server.py` (a Python standard-library server) and `render.yaml` (a Render Blueprint) so nothing else is needed.
 
-1. In Render, create a new Web Service, connect `comradeonboard/comradeonboard.github.io`, and set the start command to `python3 server.py`. Runtime is Python 3.
-2. Or use the included Blueprint: Render Dashboard → New → Blueprint → point it at this repo. `render.yaml` sets everything up automatically.
+Step by step:
 
-No Python packages are needed. The server uses the standard library only.
+1. Render Dashboard → **New** → **Web Service**.
+2. Connect the GitHub repo `comradeonboard/comradeonboard.github.io`.
+3. Runtime: **Python 3**. Build command: leave empty. Start command: `python3 server.py`.
+4. Deploy.
+
+Alternatively, use the included Blueprint: Render Dashboard → **New** → **Blueprint** → point it at this repo. `render.yaml` already sets the runtime, build command and start command automatically.
+
+The server listens on the `PORT` environment variable that Render provides and falls back to `10000` for local runs. No Python packages or dependencies are required.
