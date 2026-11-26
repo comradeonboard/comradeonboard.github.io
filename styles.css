@@ -709,6 +709,23 @@ main, .site-footer { position: relative; z-index: 1; }
 .affiliate-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
 .affiliate-action { align-self: flex-start; }
 
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: clamp(0.75rem, 1.6vw, 1.1rem);
+}
+.social-grid .affiliate-preview-body { min-height: 130px; }
+.social-logo {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 0.45rem;
+  border-radius: 12px;
+  background: var(--logo-bg, var(--accent-soft));
+}
+.social-logo img { width: 22px; height: 22px; filter: brightness(0) invert(1); }
+
 /* ---------- Prose ---------- */
 .prose-grid {
   display: grid;
