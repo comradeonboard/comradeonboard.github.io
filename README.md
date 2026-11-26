@@ -72,7 +72,9 @@ Push to `main` in `comradeonboard/comradeonboard.github.io` with Pages set to "D
 
 ### Render Web Service
 
-No packages are needed. `requirements.txt` is intentionally empty so Render's default `pip install -r requirements.txt` build succeeds even if no custom build command is set. If the build command is set, it copies the site into `dist/`; `server.py` serves `dist/` when present, otherwise the repo root, so both setups work.
+The repo supports both a manually created Web Service and the included Blueprint.
+
+`requirements.txt` installs `gunicorn`. If a Web Service is created with blank build and start commands, Render uses its defaults: `pip install -r requirements.txt` and `gunicorn app:app`. That works because `app.py` exposes a WSGI app. `your_application/wsgi.py` is also included in case the older default `gunicorn your_application.wsgi` is used. If the build command is set, it copies the site into `dist/`; the apps serve `dist/` when present, otherwise the repo root.
 
 **Option A: Dashboard**
 
@@ -92,6 +94,8 @@ No packages are needed. `requirements.txt` is intentionally empty so Render's de
 
 Render Dashboard → **New** → **Blueprint** → point it at this repo. `render.yaml` sets the service name, build command and start command automatically.
 
-`server.py` reads `PORT` from Render and falls back to `8000` locally. It serves the site's own `404.html` for unknown URLs and disables directory listings.
+All three entry points (`python3 server.py`, `gunicorn app:app`, and `gunicorn your_application.wsgi`) read `PORT` from Render and fall back to `8000` locally. They serve the site's own `404.html` for unknown URLs and disable directory listings.
+
+Existing manually created services keep their own settings. In Render Dashboard, open the service and check **Settings → Build & Deploy**. Either leave Build Command blank and Start Command blank so the defaults install gunicorn and run `app:app`, or set them explicitly to the values in Option A. After changing settings, use **Manual Deploy → Deploy latest commit**.
 
 > On Render's free plan the service sleeps after inactivity, so the first visit after a gap can take several seconds. A Static Site avoids this, but this repo is configured as a Web Service as requested. If you move to a custom domain, update `og:url`, canonical links, `sitemap.xml` and `robots.txt` to the new address.
