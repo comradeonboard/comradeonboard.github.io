@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: comrade-portfolio
+    runtime: python3
+    plan: free
+    buildCommand: ""
+    startCommand: python3 server.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"

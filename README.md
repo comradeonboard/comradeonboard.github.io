@@ -37,4 +37,21 @@ Most profiles use the username `comradeonboard`; X uses `comradeweb3`. Discord h
 
 ## Deploy
 
-Push to `main` in `comradeonboard/comradeonboard.github.io` with Pages set to "Deploy from a branch" → `main` / `/ (root)`.
+### GitHub Pages
+
+Push to `main` in `comradeonboard/comradeonboard.github.io` with Pages set to "Deploy from a branch" → `main` / `/ (root)`. Site URL: https://comradeonboard.github.io/
+
+### Render Web Service
+
+The repo includes `render.yaml` and `server.py`. Start command:
+
+```
+python3 server.py
+```
+
+The server listens on the `PORT` environment variable that Render provides, defaulting to `10000` locally. Two ways to deploy:
+
+1. In Render, create a new Web Service, connect `comradeonboard/comradeonboard.github.io`, and set the start command to `python3 server.py`. Runtime is Python 3.
+2. Or use the included Blueprint: Render Dashboard → New → Blueprint → point it at this repo. `render.yaml` sets everything up automatically.
+
+No Python packages are needed. The server uses the standard library only.
