@@ -10,9 +10,10 @@ Live site: https://comradeonboard.github.io/
 | --- | --- |
 | `index.html` | `/` (home) |
 | `about.html` | `/about.html` |
-| `work.html` | `/work.html` (projects plus GitHub proof of work) |
+| `experience.html` | `/experience.html` (projects, GitHub proof of work, and insights) |
 | `skills.html` | `/skills.html` |
-| `insights.html` | `/insights.html` |
+| `work.html` | `/work.html` (legacy redirect to Experience) |
+| `insights.html` | `/insights.html` (legacy redirect to Experience) |
 | `affiliates.html` | `/affiliates.html` (affiliate platforms and bot links) |
 | `connect.html` | `/connect.html` (all social and contact links) |
 | `project-comrade-labs.html` | `/project-comrade-labs.html` |
@@ -20,13 +21,15 @@ Live site: https://comradeonboard.github.io/
 | `project-featured-insights.html` | `/project-featured-insights.html` |
 | `404.html` | Custom not-found page |
 
+Old Work and Insights URLs stay live as noindex redirects to Experience so existing links do not break.
+
 ## Editing
 
 - Styling lives in `styles.css`. It is dark only, with no theme toggle. The hamburger menu is available on every screen size, including normal desktop.
 - Shared behavior lives in `script.js`: sticky header state, active navigation link, menu toggle, scroll reveal, count-up stats, Discord username copy button, footer year and a live ambient 3D background.
 - The 3D background is a low-opacity wireframe shape and particle field drawn on a fixed canvas behind the content. It uses the site accent color, adapts to screen size, pauses when the tab is hidden, and falls back to CSS gradients when WebGL is unavailable or reduced motion is requested.
 - Every page shares the same header and footer markup. When adding a page, copy an existing one and update `<title>`, `data-page`, and the navigation.
-- `data-page` values: `home`, `about`, `work`, `skills`, `insights`, `affiliates`, `connect`. Project detail pages use `work` so the Work nav item stays highlighted.
+- `data-page` values: `home`, `about`, `experience`, `skills`, `affiliates`, `connect`. Project detail pages use `experience` so the Experience nav item stays highlighted.
 - All pages include a no-cache meta tag so visitors get the latest version after updates.
 - SEO lives in each page's `<head>`: Open Graph, Twitter card, canonical URL and JSON-LD structured data. `sitemap.xml` and `robots.txt` are in the repo root.
 
@@ -37,7 +40,7 @@ Live site: https://comradeonboard.github.io/
 - Removed the old terminal-style tagline and the old biography heading block.
 - Removed the unwanted third service card, skill, insight quote and related copy.
 - Removed the light/dark theme button. The site is dark mode only.
-- Removed the menu button. Navigation is now a horizontal scrollable bar on smaller screens.
+- Kept the menu button on every screen size as a compact dropdown that does not cover the page.
 - Removed the page photo from the home and about pages.
 - Set a circular version of your photo (`media/favicon.png`) as the favicon on every page.
 
@@ -47,8 +50,8 @@ The site is dark mode only. A live Three.js wireframe globe, particle field, and
 
 ## Responsive behavior
 
-- Above 1024px: full horizontal navigation and wide layouts.
-- At 1024px and below: header stacks, navigation becomes a horizontally scrollable bar, no buttons needed.
+- Above 1024px: full horizontal navigation, compact menu button, and wide layouts.
+- At 1024px and below: header stacks and navigation opens as a compact dropdown from the menu button.
 - At 900px and below: two-column content grids and stacked section headings.
 - At 720px and below: single-column cards, links, skills and repository grid.
 - At 480px and below: tighter spacing, smaller type, full-width buttons.
@@ -56,7 +59,7 @@ The site is dark mode only. A live Three.js wireframe globe, particle field, and
 
 ## Proof of work
 
-The Work page has a repository section with selected public GitHub projects and a link to the full profile. Edit the cards in `work.html` to change which repositories are featured.
+The Experience page has a repository section with selected public GitHub projects and a link to the full profile. Edit the cards in `experience.html` to change which repositories are featured.
 
 ## Visitor counter
 
