@@ -1,11 +1,13 @@
 /* =========================================================
    Comrade / Portfolio
    Inspired by the Arafat Onimisi portfolio design system.
-   Dark only. Tokens -> Base -> Layout -> Components -> Responsive
+   Dark default with an optional light theme. Tokens -> Base -> Layout -> Components -> Responsive
    ========================================================= */
 
 /* ---------- Tokens ---------- */
 :root {
+  color-scheme: dark;
+
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
@@ -22,6 +24,18 @@
   --accent-soft: rgba(224, 138, 82, 0.12);
   --accent-ink: #1a1008;
 
+  --wash-1: rgba(224, 138, 82, 0.09);
+  --wash-2: rgba(224, 138, 82, 0.05);
+  --wash-3: rgba(15, 14, 12, 0.2);
+  --wash-4: rgba(15, 14, 12, 0.78);
+  --preview-bg: #0d0c0a;
+  --preview-sheen: rgba(255, 255, 255, 0.05);
+  --preview-grid: rgba(255, 255, 255, 0.035);
+  --logo-neutral: rgba(255, 255, 255, 0.08);
+  --logo-filter: brightness(0) invert(1);
+  --live: #5fd07c;
+  --live-ring: rgba(95, 208, 124, 0.16);
+
   --radius: 16px;
   --radius-sm: 10px;
   --shadow: 0 26px 60px -30px rgba(0, 0, 0, 0.8);
@@ -31,6 +45,36 @@
   --section-y: clamp(4.5rem, 10vw, 8rem);
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f6f3ee;
+  --bg-soft: #efebe4;
+  --surface: #fffdfa;
+  --text: #181511;
+  --muted: #625c53;
+  --faint: #817a70;
+  --line: rgba(24, 21, 17, 0.12);
+  --line-strong: rgba(24, 21, 17, 0.26);
+  --accent: #a94d1e;
+  --accent-soft: rgba(169, 77, 30, 0.1);
+  --accent-ink: #ffffff;
+
+  --wash-1: rgba(169, 77, 30, 0.08);
+  --wash-2: rgba(169, 77, 30, 0.04);
+  --wash-3: rgba(246, 243, 238, 0.2);
+  --wash-4: rgba(246, 243, 238, 0.72);
+  --preview-bg: #f0ebe3;
+  --preview-sheen: rgba(255, 255, 255, 0.58);
+  --preview-grid: rgba(24, 21, 17, 0.045);
+  --logo-neutral: rgba(24, 21, 17, 0.07);
+  --logo-filter: brightness(0);
+  --live: #168a4b;
+  --live-ring: rgba(22, 138, 75, 0.14);
+
+  --shadow: 0 26px 60px -34px rgba(59, 45, 30, 0.35);
 }
 
 /* ---------- Base ---------- */
@@ -116,9 +160,9 @@ body::after {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 18% 12%, rgba(224, 138, 82, 0.09), transparent 44%),
-    radial-gradient(circle at 82% 24%, rgba(224, 138, 82, 0.05), transparent 40%),
-    linear-gradient(to bottom, rgba(15, 14, 12, 0.2), rgba(15, 14, 12, 0.78));
+    radial-gradient(circle at 18% 12%, var(--wash-1), transparent 44%),
+    radial-gradient(circle at 82% 24%, var(--wash-2), transparent 40%),
+    linear-gradient(to bottom, var(--wash-3), var(--wash-4));
 }
 
 main, .site-footer { position: relative; z-index: 1; }
@@ -260,6 +304,31 @@ main, .site-footer { position: relative; z-index: 1; }
 .menu-btn[aria-expanded="true"] .menu-bars i:first-child { transform: translateY(3.25px) rotate(45deg); }
 .menu-btn[aria-expanded="true"] .menu-bars i:last-child { transform: translateY(-3.25px) rotate(-45deg); }
 
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  height: 38px;
+  flex: none;
+  padding: 0 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s, transform 0.2s;
+}
+.theme-btn:hover { border-color: var(--line-strong); background: var(--surface); color: var(--text); }
+.theme-btn:active { transform: scale(0.96); }
+.theme-label::before { content: "Light"; }
+:root[data-theme="light"] .theme-label::before { content: "Dark"; }
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
@@ -335,8 +404,8 @@ main, .site-footer { position: relative; z-index: 1; }
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #5fd07c;
-  box-shadow: 0 0 0 3px rgba(95, 208, 124, 0.16);
+  background: var(--live);
+  box-shadow: 0 0 0 3px var(--live-ring);
   flex: none;
 }
 .eyebrow .dot-live { margin-top: 0.45em; }
@@ -684,7 +753,7 @@ main, .site-footer { position: relative; z-index: 1; }
   margin-bottom: 1.25rem;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
-  background: radial-gradient(circle at 85% 15%, var(--accent-soft), transparent 55%), #0d0c0a;
+  background: radial-gradient(circle at 85% 15%, var(--accent-soft), transparent 55%), var(--preview-bg);
 }
 .affiliate-preview-bar { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.6rem; }
 .affiliate-preview-bar i { width: 6px; height: 6px; border-radius: 50%; background: var(--line-strong); }
@@ -698,9 +767,9 @@ main, .site-footer { position: relative; z-index: 1; }
   padding: 0.9rem;
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 60%),
-    repeating-linear-gradient(90deg, transparent 0 23px, rgba(255, 255, 255, 0.035) 23px 24px),
-    repeating-linear-gradient(0deg, transparent 0 23px, rgba(255, 255, 255, 0.035) 23px 24px);
+    linear-gradient(135deg, var(--preview-sheen), transparent 60%),
+    repeating-linear-gradient(90deg, transparent 0 23px, var(--preview-grid) 23px 24px),
+    repeating-linear-gradient(0deg, transparent 0 23px, var(--preview-grid) 23px 24px);
 }
 .affiliate-preview-title { font-family: var(--font-display); font-size: 1.45rem; letter-spacing: -0.03em; }
 .affiliate-preview-sub { font-size: 0.72rem; color: var(--muted); }
@@ -743,7 +812,7 @@ main, .site-footer { position: relative; z-index: 1; }
   border-radius: 12px;
   background: var(--logo-bg, var(--accent-soft));
 }
-.social-logo img { width: 22px; height: 22px; filter: brightness(0) invert(1); }
+.social-logo img { width: 22px; height: 22px; filter: var(--logo-filter); }
 
 /* ---------- Prose ---------- */
 .prose-grid {
@@ -917,6 +986,7 @@ main, .site-footer { position: relative; z-index: 1; }
 }
 
 @media (max-width: 640px) {
+  .header-inner { gap: 0.75rem; }
   .cap-grid, .approach-grid, .index-grid, .repo-grid, .info-grid { grid-template-columns: 1fr; }
   .hero-meta { gap: 1.25rem 1.75rem; }
   .stats { grid-template-columns: 1fr 1fr; }
@@ -956,7 +1026,7 @@ main, .site-footer { position: relative; z-index: 1; }
 
 /* ---------- Print ---------- */
 @media print {
-  .site-header, .strip, .to-top, #bg-3d { display: none !important; }
+  .site-header, .strip, .to-top, .theme-btn, #bg-3d { display: none !important; }
   body::after { display: none; }
   .section { padding-block: 2rem; }
 }

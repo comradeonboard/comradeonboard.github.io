@@ -6,6 +6,39 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- Theme ---------- */
+  var themeBtn = document.getElementById('theme-btn');
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+
+  function applyTheme(theme, save) {
+    var next = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    if (themeBtn) {
+      themeBtn.setAttribute('aria-label', 'Switch to ' + (next === 'light' ? 'dark' : 'light') + ' theme');
+    }
+    if (themeMeta) {
+      themeMeta.setAttribute('content', next === 'light' ? '#f6f3ee' : '#0f0e0c');
+    }
+    if (save) {
+      try { localStorage.setItem('comrade-theme', next); } catch (error) {}
+    }
+    document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } }));
+  }
+
+  applyTheme(document.documentElement.getAttribute('data-theme') || 'dark', false);
+
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function () {
+      applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light', true);
+    });
+  }
+
+  window.addEventListener('storage', function (event) {
+    if (event.key === 'comrade-theme' && (event.newValue === 'light' || event.newValue === 'dark')) {
+      applyTheme(event.newValue, false);
+    }
+  });
+
   /* ---------- Footer year ---------- */
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -152,11 +185,14 @@
 
     try {
       var smallScreen = window.innerWidth < 700;
-      var accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#e08a52';
+      var rootStyle = getComputedStyle(document.documentElement);
+      var accent = rootStyle.getPropertyValue('--accent').trim() || '#e08a52';
+      var bg = rootStyle.getPropertyValue('--bg').trim() || '#0f0e0c';
+      var faint = rootStyle.getPropertyValue('--faint').trim() || '#78736a';
       var color = new THREE.Color(accent);
 
       var scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x0f0e0c, 0.075);
+      scene.fog = new THREE.FogExp2(new THREE.Color(bg), 0.075);
 
       var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
       camera.position.z = 7;
@@ -195,7 +231,7 @@
 
       /* Small crypto chart in the ambient scene */
       var cryptoGroup = new THREE.Group();
-      var cryptoDim = new THREE.Color('#8c7868');
+      var cryptoDim = new THREE.Color(faint);
       var cryptoBaseY = -1.5;
       var tickCount = 0;
       var coin;
@@ -245,9 +281,10 @@
       [-0.72, 0, 0.72].forEach(function (x) {
         axisPoints.push(new THREE.Vector3(x, -0.22, 0), new THREE.Vector3(x, 0.92, 0));
       });
+      var axisMaterial = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.08 });
       cryptoGroup.add(new THREE.LineSegments(
         new THREE.BufferGeometry().setFromPoints(axisPoints),
-        new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.08 })
+        axisMaterial
       ));
 
       coin = new THREE.Mesh(
@@ -258,6 +295,25 @@
       coin.position.set(lastPoint.x, lastPoint.y + 0.26, 0.05);
       cryptoGroup.add(coin);
       scene.add(cryptoGroup);
+
+      var accentMaterials = [
+        wire.material, points.material, ring.material,
+        upMaterial, wickMaterial, trend.material, axisMaterial, coin.material
+      ];
+
+      function syncSceneColors() {
+        var styles = getComputedStyle(document.documentElement);
+        var nextAccent = styles.getPropertyValue('--accent').trim() || '#e08a52';
+        var nextBg = styles.getPropertyValue('--bg').trim() || '#0f0e0c';
+        var nextFaint = styles.getPropertyValue('--faint').trim() || '#78736a';
+        accentMaterials.forEach(function (material) { material.color.set(nextAccent); });
+        scene.fog.color.set(nextBg);
+        cryptoDim.set(nextFaint);
+        downMaterial.color.set(nextFaint);
+        renderer.render(scene, camera);
+      }
+
+      document.addEventListener('themechange', syncSceneColors);
 
       function resize() {
         var width = window.innerWidth;

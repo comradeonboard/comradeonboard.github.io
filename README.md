@@ -25,14 +25,14 @@ Old Work, Insights, and Skills URLs stay live as noindex redirects to Experience
 
 ## Editing
 
-- Styling lives in `styles.css`. It is dark only, with no theme toggle. The hamburger menu is available on every screen size, including normal desktop.
+- Styling lives in `styles.css`. Dark is the default, with a compact text theme toggle in the header. The choice is saved in `localStorage` and applied before CSS loads. The hamburger menu is available on every screen size, including normal desktop.
 - Contact and Affiliates cards use wide horizontal layouts on larger screens and stack cleanly on phones.
-- Shared behavior lives in `script.js`: sticky header state, active navigation link, menu toggle, scroll reveal, count-up stats, Discord username copy button, footer year and a live ambient 3D background.
+- Shared behavior lives in `script.js`: theme toggle, sticky header state, active navigation link, menu toggle, scroll reveal, count-up stats, Discord username copy button, footer year and a live ambient 3D background.
 - The 3D background is a low-opacity wireframe shape and particle field drawn on a fixed canvas behind the content. It uses the site accent color, adapts to screen size, pauses when the tab is hidden, and falls back to CSS gradients when WebGL is unavailable or reduced motion is requested.
 - Every page shares the same header and footer markup. When adding a page, copy an existing one and update `<title>`, `data-page`, and the navigation.
 - `data-page` values: `home`, `experience`, `affiliates`, `connect`. Project detail pages use `experience` so the Experience nav item stays highlighted.
 - All pages include a no-cache meta tag so visitors get the latest version after updates.
-- SEO lives in each page's `<head>`: Open Graph, Twitter card, canonical URL and JSON-LD structured data. `sitemap.xml` and `robots.txt` are in the repo root.
+- SEO lives in each page's `<head>`: Open Graph, Twitter card, canonical URL and JSON-LD structured data. Link previews use the rectangular `media/social-preview.png` (1200x630), not the circular favicon. `sitemap.xml` and `robots.txt` are in the repo root.
 
 ## Corrections applied
 
@@ -40,23 +40,24 @@ Old Work, Insights, and Skills URLs stay live as noindex redirects to Experience
 - Removed every em dash and en dash from the site.
 - Removed the old terminal-style tagline and the old biography heading block.
 - Removed the unwanted third service card, skill, insight quote and related copy.
-- Removed the light/dark theme button. The site is dark mode only.
+- Added a compact text theme toggle. Dark remains the default and the visitor's choice is remembered.
 - Kept the menu button on every screen size as a compact dropdown that does not cover the page.
 - Removed the page photo from the home and about pages.
-- Set a circular version of your photo (`media/favicon.png`) as the favicon on every page.
+- Set the circular `media/favicon.png` as the favicon on every page.
+- Set the rectangular `media/social-preview.png` as the Open Graph and Twitter share image on every page.
 
 ## Theme and 3D animation
 
-The site is dark mode only. A live Three.js wireframe globe, particle field, and subtle crypto candlestick chart sit behind every page and react slowly to pointer movement. If WebGL or the CDN is unavailable, a CSS gradient animation takes over. Cards tilt slightly on hover. All motion is disabled for visitors using `prefers-reduced-motion`. No build step is required.
+The site opens in dark mode. The header's small text toggle switches to a warm light theme and saves the choice for later visits. A live Three.js wireframe globe, particle field, and subtle crypto candlestick chart sit behind every page, use the active theme's colors, and react slowly to pointer movement. If WebGL or the CDN is unavailable, CSS gradients take over. Cards tilt slightly on hover. All motion is disabled for visitors using `prefers-reduced-motion`. No build step is required.
 
 ## Responsive behavior
 
-- Above 1024px: full horizontal navigation, compact menu button, and wide layouts.
-- At 1024px and below: header stacks and navigation opens as a compact dropdown from the menu button.
-- At 900px and below: two-column content grids and stacked section headings.
-- At 720px and below: single-column cards, links, skills and repository grid.
-- At 480px and below: tighter spacing, smaller type, full-width buttons.
-- Short landscape screens get reduced vertical padding.
+- All widths: the navigation opens as a compact dropdown from the menu button, with the theme toggle beside it.
+- At 1100px and below: repository cards move to two columns.
+- At 980px and below: About, prose and capability grids collapse toward fewer columns.
+- At 900px and below: work items stack and the 3D background fades back.
+- At 640px and below: cards, repositories, info cells and large grids become single-column; Contact and Affiliates cards stack cleanly.
+- At 400px and below: stats become single-column.
 
 ## Proof of work
 
