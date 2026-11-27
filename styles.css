@@ -655,9 +655,9 @@ main, .site-footer { position: relative; z-index: 1; }
 .index-card:hover .index-link span { transform: translateX(4px); }
 
 /* ---------- Affiliate platforms ---------- */
-.affiliate-grid {
+.affiliate-grid, .social-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  grid-template-columns: 1fr;
   gap: clamp(0.75rem, 1.6vw, 1.1rem);
 }
 .affiliate-card {
@@ -709,12 +709,31 @@ main, .site-footer { position: relative; z-index: 1; }
 .affiliate-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
 .affiliate-action { align-self: flex-start; }
 
-.social-grid {
+.affiliate-grid .affiliate-card, .social-grid .affiliate-card {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-  gap: clamp(0.75rem, 1.6vw, 1.1rem);
+  grid-template-columns: minmax(220px, 38%) minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "preview tag"
+    "preview title"
+    "preview desc"
+    "preview actions";
+  column-gap: clamp(1rem, 2.5vw, 1.75rem);
+  row-gap: 0.35rem;
+  align-items: start;
 }
-.social-grid .affiliate-preview-body { min-height: 130px; }
+.affiliate-grid .affiliate-tag, .social-grid .affiliate-tag { grid-area: tag; margin-bottom: 0; }
+.affiliate-grid .affiliate-card h3, .social-grid .affiliate-card h3 { grid-area: title; margin: 0; }
+.affiliate-grid .affiliate-card > p:not(.affiliate-tag), .social-grid .affiliate-card > p:not(.affiliate-tag) { grid-area: desc; margin: 0; align-self: center; }
+.affiliate-grid .affiliate-actions, .social-grid .affiliate-actions { grid-area: actions; align-self: end; margin-top: 0.5rem; }
+.affiliate-grid .affiliate-preview, .social-grid .affiliate-preview {
+  grid-area: preview;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-bottom: 0;
+}
+.affiliate-grid .affiliate-preview-body, .social-grid .affiliate-preview-body { flex: 1; min-height: 120px; }
 .social-logo {
   display: grid;
   place-items: center;
@@ -904,6 +923,20 @@ main, .site-footer { position: relative; z-index: 1; }
   .footer-legal { margin-left: 0; }
   .contact-actions .btn { width: 100%; }
   .hero-cta .btn { width: 100%; }
+  .affiliate-grid .affiliate-card, .social-grid .affiliate-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "preview"
+      "tag"
+      "title"
+      "desc"
+      "actions";
+    row-gap: 0.5rem;
+  }
+  .affiliate-grid .affiliate-preview, .social-grid .affiliate-preview { height: auto; }
+  .affiliate-grid .affiliate-preview-body, .social-grid .affiliate-preview-body { min-height: 130px; }
+  .affiliate-grid .affiliate-card > p:not(.affiliate-tag), .social-grid .affiliate-card > p:not(.affiliate-tag) { align-self: start; }
 }
 
 @media (max-width: 400px) {

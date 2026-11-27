@@ -26,6 +26,7 @@ Old Work, Insights, and Skills URLs stay live as noindex redirects to Experience
 ## Editing
 
 - Styling lives in `styles.css`. It is dark only, with no theme toggle. The hamburger menu is available on every screen size, including normal desktop.
+- Contact and Affiliates cards use wide horizontal layouts on larger screens and stack cleanly on phones.
 - Shared behavior lives in `script.js`: sticky header state, active navigation link, menu toggle, scroll reveal, count-up stats, Discord username copy button, footer year and a live ambient 3D background.
 - The 3D background is a low-opacity wireframe shape and particle field drawn on a fixed canvas behind the content. It uses the site accent color, adapts to screen size, pauses when the tab is hidden, and falls back to CSS gradients when WebGL is unavailable or reduced motion is requested.
 - Every page shares the same header and footer markup. When adding a page, copy an existing one and update `<title>`, `data-page`, and the navigation.
