@@ -10,8 +10,8 @@ Live site: https://comradeonboard.github.io/
 | --- | --- |
 | `index.html` | `/` (home) |
 | `about.html` | `/about.html` |
-| `experience.html` | `/experience.html` (projects, GitHub proof of work, and insights) |
-| `skills.html` | `/skills.html` |
+| `experience.html` | `/experience.html` (projects, GitHub proof of work, skills, and insights) |
+| `skills.html` | `/skills.html` (legacy redirect to Experience) |
 | `work.html` | `/work.html` (legacy redirect to Experience) |
 | `insights.html` | `/insights.html` (legacy redirect to Experience) |
 | `affiliates.html` | `/affiliates.html` (affiliate platforms and bot links) |
@@ -21,7 +21,7 @@ Live site: https://comradeonboard.github.io/
 | `project-featured-insights.html` | `/project-featured-insights.html` |
 | `404.html` | Custom not-found page |
 
-Old Work and Insights URLs stay live as noindex redirects to Experience so existing links do not break.
+Old Work, Insights, and Skills URLs stay live as noindex redirects to Experience so existing links do not break.
 
 ## Editing
 
@@ -29,7 +29,7 @@ Old Work and Insights URLs stay live as noindex redirects to Experience so exist
 - Shared behavior lives in `script.js`: sticky header state, active navigation link, menu toggle, scroll reveal, count-up stats, Discord username copy button, footer year and a live ambient 3D background.
 - The 3D background is a low-opacity wireframe shape and particle field drawn on a fixed canvas behind the content. It uses the site accent color, adapts to screen size, pauses when the tab is hidden, and falls back to CSS gradients when WebGL is unavailable or reduced motion is requested.
 - Every page shares the same header and footer markup. When adding a page, copy an existing one and update `<title>`, `data-page`, and the navigation.
-- `data-page` values: `home`, `about`, `experience`, `skills`, `affiliates`, `connect`. Project detail pages use `experience` so the Experience nav item stays highlighted.
+- `data-page` values: `home`, `about`, `experience`, `affiliates`, `connect`. Project detail pages use `experience` so the Experience nav item stays highlighted.
 - All pages include a no-cache meta tag so visitors get the latest version after updates.
 - SEO lives in each page's `<head>`: Open Graph, Twitter card, canonical URL and JSON-LD structured data. `sitemap.xml` and `robots.txt` are in the repo root.
 
